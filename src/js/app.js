@@ -13,12 +13,11 @@ function fetchSchedule(route, stop, display, direction) {
         console.log(request.responseText);
         var response = JSON.parse(request.responseText);
         
-        //var times = response.   what's the output? it's an array?
+        var times = response.something   //what's the output? it's an array?
         console.log(times);
      
         Pebble.sendAppMessage({
-          'WEATHER_TEMPERATURE_KEY': temperature + '\xB0C',
-          'WEATHER_CITY_KEY': city
+          'MESSAGE_KEY_SCHEDULE': times //No idea what I'm doing here
         });
       } else {console.log('Error');}
   };
