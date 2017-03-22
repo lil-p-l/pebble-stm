@@ -27,4 +27,4 @@ mongoose.Promise = global.Promise; //wtf is mongoose
 mongoose.connect(config.mongoUrl);
 
 gtfs.import(config, (err) => {if (err) return console.error(err);
- console.log('Import Succesful')});
+console.log('Import Succesful')});

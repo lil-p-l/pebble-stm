@@ -1,8 +1,7 @@
 {
     "author": "lilian.peng.liu@gmail.com",
     "dependencies": {
-        "gtfs": "^0.7.0",
-        "mongodb": "^2.2.10"
+        "gtfs": "^0.7.0"
     },
     "keywords": [],
     "name": "stm",
@@ -15,6 +14,10 @@
             "media": []
         },
         "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt"
+        ],
         "uuid": "0f7ea02b-8f14-43e0-a702-4f011c40002c",
         "watchapp": {
             "watchface": false
