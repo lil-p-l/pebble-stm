@@ -1,30 +1,23 @@
-/**http://www.stm.info/sites/default/files/gtfs/gtfs_stm.zip
-function fetchSchedule(route, stop, display, direction)
-**/
+/*Using node-csv-parse
+Use getLatestFeedVersion for internal ID (date)
+Feed ID: societe-de-transport-de-montreal/39
+*/
 
-//create and connect to database
-var mongodb = require('mongodb').MongoClient;
-var assert = require('assert');
-var url = 'mongodb://localhost:27017/gtfs';
+var parse = require('csv-parse');
+var request = new XMLHttpRequest();
 
-//import GTFS
-var gfts = require('gtfs');
-var mongoose = require('mongoose');
+//ajax server request
+request.open("GET", "https://transitfeeds-data.s3-us-west-1.amazonaws.com/public/feeds/societe-de-transport-de-montreal/39/20170317/original/fare_attributes.txt", true);
+request.send();
 
-//JSON object specification
-var config = {
-  mongoURl: 'mongodb://localhost:27107/gtfs', 
-  agencies: [
-    {
-      agency_key: 'stm',
-      url: 'http://www.stm.info/sites/default/files/gtfs/gtfs_stm.zip',
-      exclude: ["fare_rules", "fare_attributes", "calendar_dates", "shapes", "frequencies"]
-    }
-  ]
+request.onreadystatechange = function() {
+  //request finished and response ready, status OK
+  if (this.readyState == 4 & this.status == 200) {
+    var fare_attributes = JSON.parse(this.responseText);
+    console.log(fare_attributes);
+  }
 };
 
-mongoose.Promise = global.Promise; //wtf is mongoose
-mongoose.connect(config.mongoUrl);
-
-gtfs.import(config, (err) => {if (err) return console.error(err);
-console.log('Import Succesful')});
+request = parse({columns: true}, {delimiter: ','}, function(err, data) {
+    console.log(data);
+}); 

@@ -1,7 +1,7 @@
 {
     "author": "lilian.peng.liu@gmail.com",
     "dependencies": {
-        "gtfs": "^0.7.0"
+        "csv-parse": "^1.1.7"
     },
     "keywords": [],
     "name": "stm",
